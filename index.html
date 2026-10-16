@@ -68,11 +68,15 @@ h1 span{color:inherit}
 .status{min-height:0;font-size:14px;color:#8a3b00;margin-top:10px}
 .status:empty{display:none}
 .caption{margin-top:14px;font-size:13px;color:var(--muted);line-height:1.6}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
-.stats h3{font-size:14px;font-weight:600;margin-bottom:4px}
-.stats p{color:var(--muted);font-size:14px}
-.stats strong{color:var(--ink);font-weight:600}
-.stats .ours{color:var(--leaf)}
+.table-title{font-size:16px;font-weight:600;margin:26px 0 0;color:var(--green)}
+.table-scroll{overflow-x:auto;margin-top:8px}
+.result-table{width:100%;border-collapse:collapse;font-size:14px;margin:0}
+.result-table th,.result-table td{text-align:right;padding:10px 12px;border-bottom:1px solid var(--line);font-weight:450;white-space:nowrap}
+.result-table th:first-child,.result-table td:first-child{text-align:left}
+.result-table th{color:#888;font-size:12px;font-weight:600;letter-spacing:.02em}
+.result-table .ours{color:var(--leaf);font-weight:600}
+.result-table .detail{display:block;margin-top:2px;font-size:12px;font-weight:400;color:var(--muted)}
+.result-table tr.total td{font-weight:600}
 .figure{margin-top:8px}
 .figure img{display:block;width:100%;background:transparent}
 .figure figcaption{margin-top:12px;font-size:13px;color:var(--muted);line-height:1.6}
@@ -112,7 +116,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,summary:focus-visible{
   .hero{padding-top:48px}
   .comparison{flex-direction:column;align-items:center}
   .video-card{width:min(100%,420px)}
-  .notes,.arch-copy,.stats,.cite{grid-template-columns:1fr}
+  .notes,.arch-copy,.cite{grid-template-columns:1fr}
   .cite{gap:22px}
   .section{padding:48px 0}
 }
@@ -155,7 +159,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,summary:focus-visible{
     </div>
     <div class="pipeline">
       <video controls playsinline preload="metadata" width="1920" height="1080">
-        <source src="VPTwin-Real-Sim-Real-Pipeline-40s-aligned.mp4" type="video/mp4">
+        <source src="VPTwin-Real-Sim-Real-Pipeline-40s-aligned.mp4?v=6" type="video/mp4">
       </video>
     </div>
   </section>
@@ -218,15 +222,95 @@ a:focus-visible,button:focus-visible,select:focus-visible,summary:focus-visible{
       </article>
     </div>
     <p id="video-status" class="status" role="status" aria-live="polite"></p>
-    <div class="stats">
-      <div>
-        <h3>Open &amp; close drawer</h3>
-        <p>SIMPACT <strong>2/5</strong> &nbsp;→&nbsp; VPTwin <strong class="ours">5/5</strong></p>
-      </div>
-      <div>
-        <h3>Grasp cup</h3>
-        <p>SIMPACT <strong>2/7</strong> &nbsp;→&nbsp; VPTwin <strong class="ours">3/7</strong></p>
-      </div>
+    <p class="caption">Across the five trials, the placed position is randomly shifted within ±1.25 cm along the x- and y-axes.</p>
+    <h3 class="table-title">Overall</h3>
+    <div class="table-scroll">
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>VPTwin</th>
+            <th>SIMPACT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Grasp cup</td>
+            <td><span class="ours">20/35</span><span class="detail">57.1% · 40.9–72.0%</span></td>
+            <td>9/35<span class="detail">25.7% · 14.2–42.1%</span></td>
+          </tr>
+          <tr>
+            <td>Open drawer</td>
+            <td><span class="ours">20/25</span><span class="detail">80.0% · 60.9–91.1%</span></td>
+            <td>8/25<span class="detail">32.0% · 17.2–51.6%</span></td>
+          </tr>
+          <tr class="total">
+            <td>Total</td>
+            <td><span class="ours">40/60</span><span class="detail">66.7% · 54.1–77.3%</span></td>
+            <td>17/60<span class="detail">28.3% · 18.5–40.8%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">Ranges are 95% Wilson intervals.</p>
+    <h3 class="table-title">Grasp cup</h3>
+    <div class="table-scroll">
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th>VPTwin</th>
+            <th>SIMPACT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Center</td>
+            <td><span class="ours">6/10</span><span class="detail">1/5 + 5/5</span></td>
+            <td>0/10<span class="detail">0/5 + 0/5</span></td>
+          </tr>
+          <tr>
+            <td>Far</td>
+            <td><span class="ours">0/5</span></td>
+            <td>0/5</td>
+          </tr>
+          <tr>
+            <td>Near</td>
+            <td><span class="ours">10/10</span><span class="detail">5/5 + 5/5</span></td>
+            <td>9/10<span class="detail">5/5 + 4/5</span></td>
+          </tr>
+          <tr>
+            <td>Left</td>
+            <td><span class="ours">4/5</span></td>
+            <td>0/5</td>
+          </tr>
+          <tr>
+            <td>Right</td>
+            <td><span class="ours">0/5</span></td>
+            <td>0/5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="table-title">Open drawer</h3>
+    <div class="table-scroll">
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>Trajectory</th>
+            <th>VPTwin</th>
+            <th>SIMPACT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><span class="ours">3/5</span></td><td>0/5</td></tr>
+          <tr><td>2</td><td><span class="ours">4/5</span></td><td>2/5</td></tr>
+          <tr><td>3</td><td><span class="ours">5/5</span></td><td>0/5</td></tr>
+          <tr><td>4</td><td><span class="ours">4/5</span></td><td>3/5</td></tr>
+          <tr><td>5</td><td><span class="ours">4/5</span></td><td>3/5</td></tr>
+          <tr class="total"><td>Total</td><td><span class="ours">20/25</span></td><td>8/25</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
